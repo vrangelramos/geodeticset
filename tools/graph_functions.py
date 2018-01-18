@@ -29,8 +29,9 @@ def get_set_vertex_on_min_path(u, v, G):
     vertex_in_min_path[0] = min_path_length
 
     for w in G:
-        if is_in_min_path(u, v, w, G, min_path_length):
-            vertex_in_min_path[1].append(w)
+        if(w != u && w != v)
+            if is_in_min_path(u, v, w, G, min_path_length):
+                vertex_in_min_path[1].append(w)
 
     return vertex_in_min_path
 
