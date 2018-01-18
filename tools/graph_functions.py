@@ -12,7 +12,7 @@ def is_in_min_path(u, v, w, G, min_u_v_path_length):
     :return:
     """
 
-    return min_u_v_path_length == nx.shortest_path(G, w, u) + nx.shortest_path(G, w, v)
+    return min_u_v_path_length == nx.shortest_path_length(G, w, u) + nx.shortest_path_length(G, w, v)
 
 
 def get_set_vertex_on_min_path(u, v, G):
@@ -25,15 +25,14 @@ def get_set_vertex_on_min_path(u, v, G):
     """
 
     min_path_length = nx.shortest_path_length(G, u, v)
-    vertex_in_min_path = [[]]
-    vertex_in_min_path[0] = min_path_length
+    vertex_in_min_path = list()
 
     for w in G:
-        if(w != u && w != v)
+        if w != u and w != v:
             if is_in_min_path(u, v, w, G, min_path_length):
-                vertex_in_min_path[1].append(w)
+                vertex_in_min_path.append(w)
 
-    return vertex_in_min_path
+    return min_path_length, vertex_in_min_path
 
 
 def get_min_paths_lenghts_and_vertex(S, G):
@@ -43,11 +42,10 @@ def get_min_paths_lenghts_and_vertex(S, G):
     :param G: grafo de entrada
     :return:
     """
-    l = [[]]
+    solution = dict()
 
     for u in S:
         S.remove(u)
         for v in S:
-            l[u][v] = get_set_vertex_on_min_path(u, v, G)
-
-    return l
+            solution[(u, v)] = get_set_vertex_on_min_path(u, v, G)
+    return solution

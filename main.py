@@ -14,7 +14,7 @@ with open("input/edges.txt") as f:
         u, v = line.split(',')
         graph.add_edge(u, v.rstrip('\n'))
 
-target_nodes = [graph.degree[u] == 1 for u in graph.nodes]
+target_nodes = [u for u in graph.nodes if graph.degree[u] == 1]
 
 result = gf.get_min_paths_lenghts_and_vertex(target_nodes, graph)
 
