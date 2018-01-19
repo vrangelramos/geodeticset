@@ -44,8 +44,14 @@ def get_min_paths_lenghts_and_vertex(S, G):
     """
     solution = dict()
 
-    for u in S:
-        S.remove(u)
-        for v in S:
-            solution[(u, v)] = get_set_vertex_on_min_path(u, v, G)
+    i = 0
+
+    while i < len(S) - 1:
+        #S.remove(u)
+        j = i + 1
+        while j < len(S):
+            solution[(S[i], S[j])] = get_set_vertex_on_min_path(S[i], S[j], G)
+            j += 1
+        i += 1
+
     return solution
