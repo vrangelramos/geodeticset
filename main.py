@@ -3,6 +3,8 @@ from tools import graph_functions as gf
 
 graph = nx.Graph()
 
+
+
 #loading nodes
 with open("input/nodesb.txt") as f:
     for line in f:
@@ -27,6 +29,8 @@ nodes_in_solution = []
 for tam, path in result.values():
     nodes_in_solution = list(set().union(nodes_in_solution, path))
 
+#print(len(graph.nodes))
+#print(len(target_nodes) + len(nodes_in_solution))
 print()
 print('Nodes not in any path:')
 
