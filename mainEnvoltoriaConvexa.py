@@ -4,12 +4,12 @@ from tools import graph_functions as gf
 graph = nx.Graph()
 
 #loading nodes
-with open("input/nodesb.txt") as f:
+with open("input/nodesS.txt") as f:
     for line in f:
         graph.add_node(line.rstrip('\n'))
 
 #loading edges
-with open("input/edgesb.txt") as f:
+with open("input/edgesS.txt") as f:
     for line in f:
         u, v = line.split(',')
         graph.add_edge(u, v.rstrip('\n'))
@@ -17,7 +17,7 @@ with open("input/edgesb.txt") as f:
 
 #loading envoltoria inicial
 S = []
-with open("input/nodesEnvoltoria.txt") as f:
+with open("input/nodesEnvoltoriaS.txt") as f:
     for line in f:
         S.append(line.rstrip('\n'))
 
