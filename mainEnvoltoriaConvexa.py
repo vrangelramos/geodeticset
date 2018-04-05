@@ -16,35 +16,41 @@ with open("input/edgesb.txt") as f:
 
 
 #loading envoltoria inicial
-envoltoria_inicial = []
+S = []
 with open("input/nodesEnvoltoria.txt") as f:
     for line in f:
-        envoltoria_inicial.append(line.rstrip('\n'))
-#target_nodes = [u for u in graph.nodes if graph.degree[u] == 1]
+        S.append(line.rstrip('\n'))
 
-nodes_in_solution = []
+print('S')
+print(sorted(S))
+print()
 
+I_S = []
+H_S = set()
+i = 0
 '''
 Repete a operação até que a envoltória não seja mais modificada
 '''
+while set(S) != H_S:
 
-envoltoria = set()
+    H_S = set(S)
 
-while set(envoltoria_inicial) != envoltoria:
-
-    envoltoria = set(envoltoria_inicial)
-
-    result = gf.get_min_paths_lenghts_and_vertex(envoltoria_inicial, graph)
+    result = gf.get_min_paths_lenghts_and_vertex(S, graph)
 
     for tam, path in result.values():
-        nodes_in_solution = list(set().union(nodes_in_solution, path))
+        I_S = list(set().union(I_S, path))
 
-    if not set(nodes_in_solution).issubset(envoltoria):
-        for u in nodes_in_solution:
-            if u not in envoltoria:
-                envoltoria_inicial.append(u)
-        nodes_in_solution = []
+    if i == 0:
+        i += 1
+        print('Iº(S)')
+        print(sorted(I_S))
+        print()
 
-print(envoltoria)
-#for item in envoltoria:
-#    print(item)
+    if not set(I_S).issubset(H_S):
+        for u in I_S:
+            if u not in H_S:
+                S.append(u)
+        I_S = []
+
+print('H(S)')
+print(sorted(H_S))
